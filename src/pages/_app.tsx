@@ -1,6 +1,17 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
+import { ThirdwebProvider } from '@thirdweb-dev/react'
+import { Sepolia } from '@thirdweb-dev/chains'
+import HeadComponent from '../components/head'
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+
+function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    <ThirdwebProvider activeChain={Sepolia}>
+      <HeadComponent />
+      <Component {...pageProps} />
+    </ThirdwebProvider>
+  );
 }
+
+export default MyApp;
